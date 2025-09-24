@@ -4,7 +4,8 @@ body {
   color: #d4d4d4;
   background: linear-gradient(135deg, #0a0f1c, #1a1f4c, #3f00ff, #8a2be2, #9400d3);
   background-size: 400% 400%;
-  animation: fondoNeon 
+  animation: fondoNeon 15s ease infinite;
+
 }
 
 @keyframes fondoNeon {
@@ -41,74 +42,60 @@ header {
 }
 
 .slider {
-  overflow: hidden;
+  position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
 }
 
 .slides {
   display: flex;
-  animation: slide 9s infinite;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slides img {
-  width: 100%;
-  flex-shrink: 0;
+  width: 30%;
+  height: auto;
+  margin: 0 10px;
+  border-radius: 10px;
+  display: block;
 }
 
-@keyframes slide {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(-100%); }
-  66% { transform: translateX(-200%); }
-  100% { transform: translateX(0); }
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
 }
 
-.servicios table {
-  width: 90%;
-  margin: auto;
-  border-collapse: collapse;
-  background-color: #1c1f2b;
-  color: #d4d4d4;
-}
+button.prev { left: 10px; }
+button.next { right: 10px; }
 
-.servicios th, .servicios td {
-  border: 1px solid #555;
-  padding: 10px;
-}
 
-.redes a {
-  margin: 10px;
-  display: inline-block;
+
+
+.project-links button {
+  margin: 5px;
   padding: 10px 15px;
-  background-color: #b08d57;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg, #1e2a3a, #3a4f6b, #c0c0c0);
+  color: #d4d4d4;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-h2 {
-  color: #00bfff; /* azul neon */
-  text-shadow: 0 0 10px #0077cc, 0 0 20px #005599;
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-
-.caja {
-  animation: fadeInUp 1s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.project-links button:hover {
+  box-shadow: 0 0 15px #b08d57, 0 0 25px #c0c0c0;
+  color: #b08d57;
+  transform: scale(1.05);
 }
 
 
@@ -117,7 +104,7 @@ h2 {
   text-align: center;
   padding: 40px 20px;
   background-color: #1c1f2b;
-  color: #ffffff; /* Letra blanca */
+  color: #ffffff;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
@@ -132,6 +119,8 @@ h2 {
   background-color: #121620;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(176, 141, 87, 0.3);
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
 }
 
 .caja h2 {
@@ -140,22 +129,25 @@ h2 {
   margin-bottom: 20px;
 }
 
-.slider img {
-  //width: 30%;       /* Reduce el ancho al 80% del contenedor */
-  //max-width: 600px; /* Limita el tamaño máximo */
-  //height: auto;     /* Mantiene proporción */
-  //margin: 0 auto;   /* Centra la imagen */
-  border-radius: 10px;
-  display: block;
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 
-.youtube iframe {
-  width: 100%;
-  height: 450px;
-  border-radius: 10px;
-  border: none;
+.servicios table {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+  background-color: #1c1f2b;
+  color: #d4d4d4;
 }
+
+.servicios th, .servicios td {
+  border: 1px solid #555;
+  padding: 10px;
+}
+
 
 .redes {
   text-align: center;
@@ -167,6 +159,7 @@ h2 {
   font-weight: bold;
   background-color: #b08d57;
   color: #fff;
+  text-decoration: none;
   border-radius: 8px;
   transition: transform 0.2s ease;
 }
@@ -176,16 +169,13 @@ h2 {
 }
 
 
-
-
-
-
-footer {
-  background-color: #1c1f2b;
-  text-align: center;
-  padding: 20px;
-  color: #999;
+.youtube iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 10px;
+  border: none;
 }
+
 
 
 .titulo-principal {
@@ -208,7 +198,7 @@ footer {
 
 
 .iconGhost {
-  width: 150px; /* Tamaño pequeño */
+  width: 150px;
   height: auto;
   animation: floatGhost 3s ease-in-out infinite;
   margin-bottom: -100px;
@@ -220,11 +210,75 @@ footer {
   margin-top: -40px;
 }
 
-/* Animación flotante para el ícono */
 @keyframes floatGhost {
   0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
 
+footer {
+  background-color: #1c1f2b;
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
 
+
+
+
+.explicacion-links {
+  font-size: 1.1em;
+  color: #b08d57;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px #c0c0c0;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.project-links button {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #2e3a4e, #4f5f7a);
+  color: #f0f0f0;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 10px rgba(176, 141, 87, 0.3);
+}
+
+.project-links button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #b08d57, 0 0 25px #c0c0c0;
+  background: linear-gradient(135deg, #3a4f6b, #b08d57);
+  color: #fff;
+}
+
+
+@media (max-width: 600px) {
+  .redes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .boton-red {
+    width: 90%;
+    font-size: 1em;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .redes h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+}
